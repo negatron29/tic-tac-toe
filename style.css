@@ -1,0 +1,14 @@
+div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 600px;
+    height: 600px;
+    background-color: tan;
+}
+
+.gamespace {
+    width: 198px;
+    height: 198px;
+    border: solid 1px black;
+}
