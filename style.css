@@ -11,4 +11,6 @@ div {
     width: 198px;
     height: 198px;
     border: solid 1px black;
+    font-size: 200px;
+    text-align: justify;
 }
