@@ -22,7 +22,16 @@ const gameBoard = (() => {
     })();
 
 const gameController = () => {
-
+    const test = "Hey!";
+    const clearBoard = () => {
+        let sqCnt = 9;
+        for (let i = 0; i < sqCnt; i++) {
+            let iStr = i.toString();
+            let tgtDiv = document.getElementById(iStr);
+            tgtDiv.innerHTML = "";
+    }
+}
+return {clearBoard};
 }
 
 const Player = (name) => {
