@@ -1,4 +1,17 @@
-div {
+#masterContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 1000px;
+    height: 600px;
+}
+
+#buttonHolder {
+    padding: 10px;
+}
+
+
+#board {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
