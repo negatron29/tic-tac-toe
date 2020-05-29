@@ -1,5 +1,9 @@
 var allMarks = ["X","O"];
 var currentMark = 0;
+var playerCnt = 0;
+var genericNames = ["Player1","Player2"];
+var players = [];
+var turnInd = 0;
 
 
 const gameBoard = (() => {
@@ -73,13 +77,41 @@ const gameController = (() => {
             return "N"
         }
     }
+    
+    const changeTurn = () => {
+        if (turnInd === 0) {
+            turnInd = 1;
+        }
+        else {
+            turnInd = 0;
+        }
+    }
 
-return {clearBoard,recordMark,checkWinner};
+return {clearBoard,recordMark,checkWinner,changeTurn};
 })();
 
 const scoreBook = [
     [],[]
 ];
+
+const addListenerPlayer = () => {
+    let createButton = document.querySelector(".playerButton");
+    createButton.addEventListener("click", () => {
+        let newName = document.getElementById("pname").value;
+        console.log(newName);
+        console.log(newName);
+        let newPlayer = Player(newName);
+        console.log(newPlayer);
+        players.push(newPlayer);
+        playerCnt +=1;
+        return newPlayer;
+
+    })
+}
+
+const addListenerSquare = () => {
+
+}
 
 const Player = (name) => {
     let thisMark = allMarks[currentMark];
@@ -122,4 +154,8 @@ function render () {
 
 render();*/
 
+
+
+
 gameBoard.render();
+addListenerPlayer();
