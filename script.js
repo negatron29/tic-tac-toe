@@ -1,7 +1,7 @@
 var allMarks = ["X","O"];
 var currentMark = 0;
 var playerCnt = 0;
-var genericNames = ["Player1","Player2"];
+//var genericNames = ["Player1","Player2"];
 var players = [];
 var turnInd = 0;
 
@@ -110,17 +110,33 @@ const addListenerPlayer = () => {
 }
 
 const addListenerSquare = () => {
-
+    let space = document.getElementsByClassName("gamespace");
+    for (let i = 0; i < space.length; i++) {
+        space[i].addEventListener("click", () => {
+            let thisId  = event.target.id;
+            console.log("thisId set to " + thisId);
+            players[turnInd].markSpot(thisId,players[turnInd].mark);
+            gameController.recordMark(turnInd,thisId);
+            let winnerChk = gameController.checkWinner(turnInd);
+            if (winnerChk === "Y") {
+                alert(players[turnInd].name + " wins!");
+            }
+            else {
+                gameController.changeTurn();
+            }
+        })
+    }
+    
 }
 
 const Player = (name) => {
-    let thisMark = allMarks[currentMark];
+    let mark = allMarks[currentMark];
     const markSpot = (sqId) => {
-        gameBoard.markBoard(sqId,thisMark);
+        gameBoard.markBoard(sqId,mark);
 
     }
     currentMark +=1;
-    return {name,markSpot};
+    return {name,mark,markSpot};
     
 }
 
@@ -159,3 +175,4 @@ render();*/
 
 gameBoard.render();
 addListenerPlayer();
+addListenerSquare();
