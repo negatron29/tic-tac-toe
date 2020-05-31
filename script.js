@@ -97,7 +97,12 @@ const gameController = (() => {
         plist.appendChild(newPl);
     }
 
-return {clearBoard,recordMark,checkWinner,changeTurn,displayPlayer};
+    const deleteInput = () => {
+        let holder = document.getElementById("buttonHolder");
+        holder.removeChild(holder.childNodes[3]);
+    }
+
+return {clearBoard,recordMark,checkWinner,changeTurn,displayPlayer,deleteInput};
 })();
 
 const scoreBook = [
@@ -121,6 +126,7 @@ const addListenerPlayer = () => {
             else {
                 document.getElementById("userMsg").innerHTML = `${players[turnInd].name}'s turn...`;
                 gameBoard.render();
+                gameController.deleteInput();
                 addListenerSquare();
             }
             
