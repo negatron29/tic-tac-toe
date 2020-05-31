@@ -12,21 +12,23 @@
 
 <body>
     <h1>Tic-Tac-Toe</h1>
+    <h2 id="userMsg">Please enter players using Game Control --></h2>
     <div id="masterContainer">
         <div id="board">
 
         </div>
         <div id="buttonHolder">
-            <h2>Game Control</h2>
+            <h2 id="gameControl">Game Control</h2>
             <form>
                 <label>Create Player 1</label><br><br>
                 <input type="text" placeholder="Player 1 name" id="pname" name="p0"><br>
                 <button type="button" class="playerButton">Create Player</button>
             </form>
             <br>
-            <h3>Current Turn</h3>
-            <h3>Player Number</h3>
             <button type="button">Start New Game</button>
+            <h3>Current Turn</h3>
+            <ul id="playerList">Players in Game</ul>
+            
             
         </div>
     </div> 

@@ -7,7 +7,7 @@
 }
 
 #buttonHolder {
-    padding: 10px;
+    padding: 5px;
     width: 200px;
     height: 600px;
 }
@@ -28,4 +28,8 @@
     border: solid 1px black;
     font-size: 200px;
     text-align: justify;
+}
+
+#gameControl {
+    margin-top: 0px;
 }

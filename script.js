@@ -87,7 +87,15 @@ const gameController = (() => {
         }
     }
 
-return {clearBoard,recordMark,checkWinner,changeTurn};
+    const displayPlayer = (name) => {
+        let plist = document.getElementById("playerList");
+        let newPl = document.createElement("li");
+        newPl.innerHTML = name;
+        console.log(newPl);
+        plist.appendChild(newPl);
+    }
+
+return {clearBoard,recordMark,checkWinner,changeTurn,displayPlayer};
 })();
 
 const scoreBook = [
@@ -101,12 +109,20 @@ const addListenerPlayer = () => {
             let newName = document.getElementById("pname").value;
             let newPlayer = Player(newName);
             players.push(newPlayer);
+            gameController.displayPlayer(newName);
             playerCnt +=1;
-            document.getElementById("pname").value = "";
-            document.getElementById("pname").setAttribute("placeholder","Player 2 name");
-            document.querySelector("label").innerHTML = "Create Player 2";
+            if (playerCnt < 2) {
+                document.getElementById("pname").value = "";
+                document.getElementById("pname").setAttribute("placeholder","Player 2 name");
+                document.querySelector("label").innerHTML = "Create Player 2";
+            }
+            else {
+                document.getElementById("userMsg").innerHTML = "Enjoy the game!";
+                gameBoard.render();
+                addListenerSquare();
+            }
+            
         }
-
     })
 }
 
@@ -121,7 +137,7 @@ const addListenerSquare = () => {
             let winnerChk = gameController.checkWinner(turnInd);
             if (winnerChk === "Y") {
                 alert(players[turnInd].name + " wins!");
-                gameController.clearBoard();
+                //gameController.clearBoard();
             }
             else {
                 gameController.changeTurn();
@@ -130,7 +146,6 @@ const addListenerSquare = () => {
     }
     
 }
-
 
 
 const Player = (name) => {
@@ -175,8 +190,12 @@ function render () {
 render();*/
 
 
+//We need a function that will force the user to input 2 players
+//(or maybe input one player and choose to play the computer)
 
-
-gameBoard.render();
 addListenerPlayer();
+
+/*
+gameBoard.render();
 addListenerSquare();
+*/
