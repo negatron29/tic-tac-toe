@@ -97,14 +97,15 @@ const scoreBook = [
 const addListenerPlayer = () => {
     let createButton = document.querySelector(".playerButton");
     createButton.addEventListener("click", () => {
-        let newName = document.getElementById("pname").value;
-        console.log(newName);
-        console.log(newName);
-        let newPlayer = Player(newName);
-        console.log(newPlayer);
-        players.push(newPlayer);
-        playerCnt +=1;
-        return newPlayer;
+        if (playerCnt < 2) {
+            let newName = document.getElementById("pname").value;
+            let newPlayer = Player(newName);
+            players.push(newPlayer);
+            playerCnt +=1;
+            document.getElementById("pname").value = "";
+            document.getElementById("pname").setAttribute("placeholder","Player 2 name");
+            document.querySelector("label").innerHTML = "Create Player 2";
+        }
 
     })
 }
@@ -120,6 +121,7 @@ const addListenerSquare = () => {
             let winnerChk = gameController.checkWinner(turnInd);
             if (winnerChk === "Y") {
                 alert(players[turnInd].name + " wins!");
+                gameController.clearBoard();
             }
             else {
                 gameController.changeTurn();
@@ -128,6 +130,8 @@ const addListenerSquare = () => {
     }
     
 }
+
+
 
 const Player = (name) => {
     let mark = allMarks[currentMark];
