@@ -102,10 +102,19 @@ const gameController = (() => {
         holder.removeChild(holder.childNodes[3]);
     }
 
-return {clearBoard,recordMark,checkWinner,changeTurn,displayPlayer,deleteInput};
+    const resetGame = () => {
+        scoreBook = [
+            [],[]
+        ];
+
+        turnInd = 0;
+        document.getElementById("userMsg").innerHTML = `${players[turnInd].name}'s turn...`;
+    }
+
+return {clearBoard,recordMark,checkWinner,changeTurn,displayPlayer,deleteInput,resetGame};
 })();
 
-const scoreBook = [
+let scoreBook = [
     [],[]
 ];
 
@@ -128,6 +137,7 @@ const addListenerPlayer = () => {
                 gameBoard.render();
                 gameController.deleteInput();
                 addListenerSquare();
+                addListenerNewGame();
             }
             
         }
@@ -155,6 +165,14 @@ const addListenerSquare = () => {
     
 }
 
+const addListenerNewGame = () => {
+    let newButton = document.getElementById("startNew");
+    newButton.addEventListener("click", () => {
+        gameController.resetGame();
+        gameController.clearBoard();
+    })
+    
+}
 
 const Player = (name) => {
     let mark = allMarks[currentMark];
