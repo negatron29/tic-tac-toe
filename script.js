@@ -81,9 +81,11 @@ const gameController = (() => {
     const changeTurn = () => {
         if (turnInd === 0) {
             turnInd = 1;
+            document.getElementById("userMsg").innerHTML = `${players[turnInd].name}'s turn...`;
         }
         else {
             turnInd = 0;
+            document.getElementById("userMsg").innerHTML = `${players[turnInd].name}'s turn...`;
         }
     }
 
@@ -117,7 +119,7 @@ const addListenerPlayer = () => {
                 document.querySelector("label").innerHTML = "Create Player 2";
             }
             else {
-                document.getElementById("userMsg").innerHTML = "Enjoy the game!";
+                document.getElementById("userMsg").innerHTML = `${players[turnInd].name}'s turn...`;
                 gameBoard.render();
                 addListenerSquare();
             }
@@ -136,7 +138,7 @@ const addListenerSquare = () => {
             gameController.recordMark(turnInd,thisId);
             let winnerChk = gameController.checkWinner(turnInd);
             if (winnerChk === "Y") {
-                alert(players[turnInd].name + " wins!");
+                document.getElementById("userMsg").innerHTML = players[turnInd].name + " wins!";
                 //gameController.clearBoard();
             }
             else {
